@@ -2,9 +2,9 @@
 import networkx as nx
 import random
 import sys
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-rand_seed = 42 #int(sys.argv[1]) #using 42 as standard its also used elsewhere
+rand_seed = int(sys.argv[1]) #using 42 as standard its also used elsewhere
 random.seed(rand_seed)
 
 n = 4
@@ -29,5 +29,5 @@ print(*random_nodes, sep='\n')
 
 
 #Visual representation of the graph
-#nx.draw(G, with_labels=True, node_color='lightblue', edge_color='gray')
-#plt.show()
+nx.draw(G, with_labels=True, node_color='lightblue', edge_color='gray')
+plt.show()
