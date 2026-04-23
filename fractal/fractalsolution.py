@@ -15,9 +15,6 @@ for _ in range(cases):
     segments = []
     segmentFractions = []
     totalLength = 0
-    directionfixer=(points[-1]-points[0]).conjugate()
-    totalspan = abs(directionfixer)
-    directionfixer=directionfixer/totalspan
 
     for i in range(n-1):
         c = points[i+1]-points[i]
@@ -25,7 +22,12 @@ for _ in range(cases):
         segmentFractions.append(abs(c))
         totalLength+=abs(c)
     segmentFractions = [x/totalLength for x in segmentFractions]
-    #print(segments, segmentFractions)
+
+    #tools to account for the distance the fractal spans and the angle of the fractal as a whole
+    directionfixer=(points[-1]-points[0]).conjugate()
+    totalspan = abs(directionfixer)
+    directionfixer=directionfixer/totalspan
+
     #traverse the fractal
     fmissing=f
     position = points[0]
@@ -35,18 +37,16 @@ for _ in range(cases):
     
     for depth in range(d):
         for i in range(n-1):
-            #print(fmissing, segmentFractions[i]*ffactor)
-            #print(depth,i,position,segments[i]*pfactor)
-            #print(ffactor)
+            #check if the next segment overshoots where we want to go and if not go the whole segment
             if fmissing > segmentFractions[i]*ffactor:
                 fmissing -=segmentFractions[i]*ffactor
                 position += segments[i]*pfactor
-                #print(depth, position)
+            #if we cannot go a full segment more and it is not the final iteration jump to the next layer of depth
             elif depth < d-1:
-                #print(depth,"landed on",i)
                 ffactor *=segmentFractions[i]
                 pfactor *=segments[i]/totalspan*directionfixer
                 break
+            #at the end go the remaining fraction out along the current segment
             else:
                 position += fmissing *segments[i]*pfactor/(segmentFractions[i]*ffactor)
                 break
