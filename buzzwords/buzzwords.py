@@ -1,17 +1,18 @@
 from collections import defaultdict
 import time
 from functools import cache
+import math
 
 def getHash(char: chr):
     return ord(char)
 
 startTime = time.time() 
 
-p = 2^31
+p = 31
 
 @cache
 def getPow(power: int):
-    return p ** power
+    return (p ** power) % 805306457
 
 inputLine = input().replace(" ", "")
 
