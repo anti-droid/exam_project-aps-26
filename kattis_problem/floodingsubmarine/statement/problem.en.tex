@@ -1,25 +1,29 @@
-\problemname{}
+\problemname{Flooding submarine}
 
-%\illustration{0.3}{image.jpg}{
-%    Caption of the illustration (optional).
-%    CC BY-SA 4.0 by X on \href{https://example.com/reference-to-image}{Y}
-%}
+You and your crew are in your submarine, navigating a narrow underwater pass, when suddenly alarms start blaring.
+You have scraped the hull in multiple places and the submarine's computer tells you that $h$ rooms will soon have holes letting the water in and start flooding. 
+From then on it's only a matter of time before the water spreads to the whole submarine.
 
-% optionally define variables/limits for this problem
-\newcommand{\maxa}{123456789}
+The rooms in the submarine are connected by corridoors and each corridor has a door that can be closed, but they are not watertight. 
+To save as much of the submarine as possible from flooding, you must seal the doors preventing the water from passing through the corridors, 
+but you only have enough sealant to seal $p$ doors. Furthermore, the control room must be saved as without it you lose control of the submarine.
 
-% TODO: Remove this comment when you're done writing the problem statement.
-Given the area $a$ of a square, calculate its perimeter.
+Your submarine consists of $n$ rooms connected by $e$ corridors, and the path from one room to another is always unique. 
+You need to seal doors so that you can access as much of the submarine as possible from the control room, 
+meaning that these rooms are completely sealed off from the water, but that you can access them from the control room without going through any sealed doors.
+
 
 \begin{Input}
     The input consists of:
     \begin{itemize}
-        \item One line with an integer $a$ ($0\leq a\leq \maxa$), the area of the square.
+        \item One line with four space-seperated integers $n$, $e$, $h$, and $p$ ($2\leq n \leq MAXRUM$ and $2\leq e \leq MAXRUM$ and $1\leq h \leq !!!$ and $2\leq p \leq !!$), 
+        \item $e$ lines containing two integers $a$ and $b$ ($0\leq a,b \leq MAXRUM$ with $a\neq b$) denoting a corridor between room $a$ and room $b$.
+        \item $h$ lines containing one integer $k$ ($1\leq k \leq MAXRUM$), denoting the rooms with holes in them where water can enter the submarine.
     \end{itemize}
+    No corridor is included twice and the room with index zero is always the control room.
 \end{Input}
 
 \begin{Output}
-    Output the perimeter of the square with area $a$.
-
-    Your answer should have an absolute or relative error of at most $10^{-6}$.
+    Output the number of rooms it is possible to save while sealing at most $p$ doors. 
+    To count as a saved room it must be accessible from the control room without going through any sealed doors. It is always possible to save at minimum the control room.
 \end{Output}
