@@ -39,3 +39,41 @@ for j in range(s):
 (use Edmonds–Karp algorithm to find maxflow, because it uses bfs, and then we can terminate it when we reach graph depth of s(maybe s+1 depending on how we do sink with medical facilities)
 
 print(min(max_flow,g))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# new solution
+Generate a graph with tuple (vertex,time) meaning that a vertex in the new graph each edge will go from
+(a,at) -p> (b,at+t)
+This will then be done for every timestamp (s)
+
+From each medical we will make an edge from the last medical to a "supersink" with infinite flow
+(m,t) -inf> (sink)
+
+there will be a "waiting edge" at each location with infinite flow to the next timestamp:
+(a,at) -inf> (a,at+1)
+
+
+
+
