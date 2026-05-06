@@ -1,4 +1,6 @@
 from collections import defaultdict
+from sys import setrecursionlimit
+setrecursionlimit(10**5)
 
 n, e, h, p = map(int,input().split())
 
