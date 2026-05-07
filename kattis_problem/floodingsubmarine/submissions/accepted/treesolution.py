@@ -50,4 +50,7 @@ def traverse(v, fromv):
         
 traverse(0,-1)
 
-print(G[0]['p'][p])
+if p > h: #if this is the case, the answer will always be the same as for p=h which is calculated
+    print(G[0]['p'][-1])
+else:
+    print(G[0]['p'][p])
