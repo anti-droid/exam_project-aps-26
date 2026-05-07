@@ -7,10 +7,10 @@ import matplotlib.pyplot as plt
 rand_seed = int(sys.argv[1]) #using 42 as standard its also used elsewhere
 random.seed(rand_seed)
 
-n = 10000
+n = 100000
 e = 15
-h = 50
-p = 3
+h = 1000
+p = 1000
 
 #G = nx.complete_graph(n) #creates a fully connected graph (could be good for a worst case testcase)
 #G = nx.gnm_random_graph(n,e) # creates random connected graph
@@ -30,5 +30,5 @@ print(*random_nodes, sep='\n')
 
 
 #Visual representation of the graph
-nx.draw(G, with_labels=True, node_color='lightblue', edge_color='gray')
-plt.show()
+#nx.draw(G, with_labels=True, node_color='lightblue', edge_color='gray')
+#plt.show()
