@@ -41,17 +41,17 @@ for testcase in range(int(input())):
     Graph = defaultdict(lambda: defaultdict(int)) 
     
     Graph[source][(i,0)] = g
-    for j in range(1,n+1):
+    for l in range(1,n+1):
         for ts in range(s):
-            Graph[(j,ts)][j,ts+1] = g
+            Graph[(l,ts)][l,ts+1] = g
 
     m = int(input())
-    for j in range(m):
+    for _ in range(m):
         med = int(input())
         Graph[(med,s)][sink] = g
     
     r = int(input())
-    for j in range(r):
+    for _ in range(r):
         a, b, p, t = map(int,input().split())
         for ts in range(s+1-t):
             Graph[(a,ts)][(b,ts+t)] = p
