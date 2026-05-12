@@ -5,7 +5,7 @@ You have scraped the hull in multiple places and the submarine's computer tells 
 From then on it's only a matter of time before the water spreads to the whole submarine. 
 In order to save yourselves and get back to the surface you need to seal yourselves off from the water.
 
-The rooms in the submarine are connected by corridoors and each corridor has a door that can be closed, but they are not watertight. 
+The rooms in the submarine are connected by corridors and each corridor has a door that can be closed, but they are not watertight. 
 To save as much of the submarine as possible from flooding, you must seal the doors preventing the water from passing through the corridors, 
 but you only have enough sealant to seal $p$ doors. Furthermore, the control room must be saved as without it you lose control of the submarine.
 
@@ -17,14 +17,16 @@ meaning that these rooms are completely sealed off from the water, but that you 
 \begin{Input}
     The input consists of:
     \begin{itemize}
-        \item One line with four space-seperated integers $n$, $e$, $h$, and $p$ ($2\leq n \leq MAXRUM$ and $2\leq e \leq MAXRUM$ and $1\leq h \leq !!!$ and $2\leq p \leq !!$), 
-        \item $e$ lines containing two integers $a$ and $b$ ($0\leq a,b \leq MAXRUM$ with $a\neq b$) denoting a corridor between room $a$ and room $b$.
-        \item $h$ lines containing one integer $k$ ($1\leq k \leq MAXRUM$), denoting the rooms with holes in them where water can enter the submarine.
+        \item One line with four space-seperated integers $n$, $e$, $h$, and $p$ ($2\leq n \leq 10000$ and $2\leq e < 10000$ and $1\leq h \leq 1000$ and $2\leq p \leq 100$), 
+        \item $e$ lines containing two integers $a$ and $b$ ($0\leq a,b \leq 10000$ with $a\neq b$) denoting a corridor between room $a$ and room $b$.
+        \item $h$ lines containing one integer $k$ ($1\leq k \leq 10000$), denoting the rooms with holes in them where water can enter the submarine.
     \end{itemize}
     No corridor is included twice and the room with index zero is always the control room.
 \end{Input}
 
 \begin{Output}
     Output the number of rooms it is possible to save while sealing at most $p$ doors. 
-    To count as a saved room it must be accessible from the control room without going through any sealed doors. It is always possible to save at minimum the control room.
+    To count as a saved room it must be accessible from the control room without going through any sealed doors. 
+    
+    It is always possible to save at minimum the control room.
 \end{Output}
