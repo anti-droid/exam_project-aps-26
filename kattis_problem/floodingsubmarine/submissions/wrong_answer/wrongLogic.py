@@ -17,6 +17,7 @@ for i in range(h):
 viseted = set()
 holesDirection = [0 for _ in range(n)]
 def setHoleDirection(ver: int): 
+    global viseted
     viseted.add(ver)
 
     if ver in holes:
@@ -24,7 +25,7 @@ def setHoleDirection(ver: int):
         return 1
     
     sum = 0
-    for child in G[ver]:
+    for child in sorted(G[ver]):
         if child not in viseted:
             sum += setHoleDirection(child)
     holesDirection[ver] = sum
@@ -47,8 +48,8 @@ while q:
             all_is_holes = False
             break
 
-    if len(q) >= p or all_is_holes:
-        print(q)
+    if (len(q) >= p or all_is_holes) and not q[0] == 0:
+        #print(q)
         break
 
     curr = q.popleft()
@@ -57,23 +58,24 @@ while q:
         q.append(curr)
         continue
 
-    for x in G[curr]:
+    for x in sorted(G[curr]):
         if not visited[x]:
             visited[x] = True
             next = x 
             while (len(G[next]) == 2 or (holesDirection[next] == 1 and len(G[next]) > 1)) and next not in holes: # if the next node only has one child (not including the node we are on currently)
                 if len(G[next]) == 2:
-                    for child in G[next]:
-                        next = child
+                    for child in sorted(G[next]):
+                        if visited[child] == False:
+                            visited[child] = True
+                            next = child
                     continue
 
-                for child in G[next]:
-                    if holesDirection[child] == 1:
+                for child in sorted(G[next]):
+                    if holesDirection[child] == 1 and not visited[child]:
+                        visited[child] = True
                         next = child
                         break 
-            if holesDirection[next] > 0 and next != curr:    
-                if next == 3:
-                    print(curr)   
+            if holesDirection[next] > 0:      
                 q.append(next)
 
 
