@@ -34,7 +34,6 @@ setHoleDirection(0)
 
 visited = [False] * n
 
-print(G)
 
 src = 0
 q = deque()
@@ -58,12 +57,18 @@ while q:
         if not visited[x]:
             visited[x] = True
             next = x 
-            while len(G[next]) == 2: # if the next node only has one child (not including the node we are on currently)
-                for child in G[next]:
-                    next = child
+            while len(G[next]) == 2 or (holesDirection[next] == 1 and len(G[next]) > 1): # if the next node only has one child (not including the node we are on currently)
+                if len(G[next]) == 2:
+                    for child in G[next]:
+                        next = child
+                    continue
 
+                for child in G[next]:
+                    if holesDirection[child] == 1:
+                        next = child
+                        break 
+                    
             q.append(next)
 
 
-print(holesDirection)
     
