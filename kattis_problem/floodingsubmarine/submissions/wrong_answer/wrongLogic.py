@@ -41,7 +41,13 @@ visited[src] = True
 q.append(src)
 
 while q:
-    if len(q) >= p:
+    all_is_holes = True
+    for node in list(q):
+        if node not in holes:
+            all_is_holes = False
+            break
+
+    if len(q) >= p or all_is_holes:
         print(q)
         break
 
@@ -51,13 +57,11 @@ while q:
         q.append(curr)
         continue
 
-    # visit all the unvisited
-    # neighbours of current node
     for x in G[curr]:
         if not visited[x]:
             visited[x] = True
             next = x 
-            while len(G[next]) == 2 or (holesDirection[next] == 1 and len(G[next]) > 1): # if the next node only has one child (not including the node we are on currently)
+            while (len(G[next]) == 2 or (holesDirection[next] == 1 and len(G[next]) > 1)) and next not in holes: # if the next node only has one child (not including the node we are on currently)
                 if len(G[next]) == 2:
                     for child in G[next]:
                         next = child
@@ -67,8 +71,24 @@ while q:
                     if holesDirection[child] == 1:
                         next = child
                         break 
-                    
-            q.append(next)
+            if holesDirection[next] > 0 and next != curr:    
+                if next == 3:
+                    print(curr)   
+                q.append(next)
 
 
+plugLocations = set(q)
+
+areaCount = 0
+def calArea(node: int, pre: int):
+    global areaCount
+    if node in plugLocations:
+        return
     
+    areaCount += 1
+
+    for child in G[node]:
+        if child != pre:
+            calArea(child, node)
+calArea(0, -1)
+print(areaCount)
