@@ -14,11 +14,11 @@ for i in range(h):
     holes.add(int(input()))
 
 # creating holeDirection
-viseted = set()
+visited = set()
 holesDirection = [0 for _ in range(n)]
 def setHoleDirection(ver: int): 
-    global viseted
-    viseted.add(ver)
+    global visited
+    visited.add(ver)
 
     if ver in holes:
         holesDirection[ver] = 1
@@ -26,20 +26,17 @@ def setHoleDirection(ver: int):
     
     sum = 0
     for child in sorted(G[ver]):
-        if child not in viseted:
+        if child not in visited:
             sum += setHoleDirection(child)
     holesDirection[ver] = sum
     return sum
 setHoleDirection(0)
 
 
-visited = [False] * n
-
-
-src = 0
+visited = set()
 q = deque()
-visited[src] = True
-q.append(src)
+visited.add(0)
+q.append(0)
 
 while q:
     all_is_holes = True
@@ -49,7 +46,6 @@ while q:
             break
 
     if (len(q) >= p or all_is_holes) and not q[0] == 0:
-        #print(q)
         break
 
     curr = q.popleft()
@@ -59,26 +55,25 @@ while q:
         continue
 
     for x in sorted(G[curr]):
-        if not visited[x]:
-            visited[x] = True
+        if x not in  visited:
+            visited.add(x)
             next = x 
+            
             while (len(G[next]) == 2 or (holesDirection[next] == 1 and len(G[next]) > 1)) and next not in holes: # if the next node only has one child (not including the node we are on currently)
                 if len(G[next]) == 2:
                     for child in sorted(G[next]):
-                        if visited[child] == False:
-                            visited[child] = True
+                        if child not in visited:
+                            visited.add(child)
                             next = child
                     continue
 
                 for child in sorted(G[next]):
-                    if holesDirection[child] == 1 and not visited[child]:
-                        visited[child] = True
+                    if holesDirection[child] == 1 and child not in visited:
+                        visited.add(child)
                         next = child
                         break 
-            if holesDirection[next] > 0:      
-                q.append(next)
 
-
+            q.append(next)
 plugLocations = set(q)
 
 areaCount = 0
