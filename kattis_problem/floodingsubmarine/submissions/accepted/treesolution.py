@@ -18,9 +18,9 @@ for i in range(h):
 
 
 #finds the optimal solution for each amount of plugs from two other solutions
-def compare_lists(l1,l2,maxplugs):
+def compare_lists(l1,l2):
     result = []
-    for plug in range(maxplugs):
+    for plug in range(len(l1)):
         if plug != 0:
             result.append(result[plug-1])
         else:
@@ -49,7 +49,7 @@ def traverse(v, fromv):
     for u in G[v]['e']:
         if u == fromv:
             continue
-        guess = compare_lists(guess, G[u]['p'], maxplugs+1)
+        guess = compare_lists(guess, G[u]['p'])
     
     if maxplugs != 0:
         guess[1] = max(guess[1],0)
