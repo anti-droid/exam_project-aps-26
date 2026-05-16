@@ -58,10 +58,4 @@ def traverse(v, fromv):
         
 traverse(0,-1)
 
-for node in G.keys():
-    print(node, G[node]['p'])
-
-if p > h: #if this is the case, the answer will always be the same as for p=h which is calculated
-    print(G[0]['p'][-1])
-else:
-    print(G[0]['p'][p])
+print(G[0]['p'][-1])
