@@ -38,7 +38,8 @@ def traverse(v, fromv):
         G[v]['p'].append(-n)
         G[v]['p'].append(0)
         return 1
-    maxplugs = 1
+
+    maxplugs = 0
     for u in G[v]['e']:
         if u == fromv:
             continue
@@ -49,11 +50,16 @@ def traverse(v, fromv):
         if u == fromv:
             continue
         guess = compare_lists(guess, G[u]['p'], maxplugs+1)
-    guess[1] = max(guess[1],0)
+    
+    if maxplugs != 0:
+        guess[1] = max(guess[1],0)
     G[v]['p'] = guess
     return maxplugs
         
 traverse(0,-1)
+
+for node in G.keys():
+    print(node, G[node]['p'])
 
 if p > h: #if this is the case, the answer will always be the same as for p=h which is calculated
     print(G[0]['p'][-1])
