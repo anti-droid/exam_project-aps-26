@@ -21,7 +21,10 @@ for i in range(h):
 def compare_lists(l1,l2,maxplugs):
     result = []
     for plug in range(maxplugs):
-        result.append(-n)
+        if plug != 0:
+            result.append(result[plug-1])
+        else:
+            result.append(-n)
         for i in range(plug+1):
             if len(l2) <= i:
                 break
