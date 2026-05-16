@@ -40,12 +40,12 @@ def traverse(v, fromv):
         if u == fromv:
             continue
         maxplugs += traverse(u,v)
-    maxplugs = min(maxplugs,p)+1
-    guess = [1 for i in range(maxplugs)]
+    maxplugs = min(maxplugs,p)
+    guess = [1 for i in range(maxplugs+1)]
     for u in G[v]['e']:
         if u == fromv:
             continue
-        guess = compare_lists(guess, G[u]['p'], maxplugs)
+        guess = compare_lists(guess, G[u]['p'], maxplugs+1)
     guess[1] = max(guess[1],0)
     G[v]['p'] = guess
     return maxplugs
