@@ -45,6 +45,7 @@ def traverse(v, fromv):
             continue
         maxplugs += traverse(u,v)
     maxplugs = min(maxplugs,p)
+    
     guess = [1 for i in range(maxplugs+1)]
     for u in G[v]['e']:
         if u == fromv:

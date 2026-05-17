@@ -1,5 +1,7 @@
 from collections import defaultdict
 from collections import deque
+from sys import setrecursionlimit
+setrecursionlimit(10**4)
 
 #input reading
 n, e, h, p = map(int,input().split())
