@@ -21,10 +21,10 @@ for i in range(h):
 def compare_lists(l1,l2,maxplugs):
     result = []
     for plug in range(maxplugs):
-        if plug == 0:
-            result.append(-n)
-        else:
+        if plug != 0:
             result.append(result[plug-1])
+        else:
+            result.append(-n)
         for i in range(plug+1):
             if len(l2) <= i:
                 break
@@ -55,7 +55,4 @@ def traverse(v, fromv):
         
 traverse(0,-1)
 
-if p > h: #if this is the case, the answer will always be the same as for p=h which is calculated
-    print(G[0]['p'][-1])
-else:
-    print(G[0]['p'][p])
+print(G[0]['p'][-1])
